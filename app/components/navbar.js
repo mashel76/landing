@@ -37,9 +37,10 @@ const NavBar = () => {
     "Help & Feedback",
     "Log Out",
   ];
-  const {isOpen, onOpen, onOpenChange} = useDisclosure();
+  const modal1 = useDisclosure();
+  const modal2 = useDisclosure();
   return (
-    <Navbar disableAnimation isBordered classNames={{
+    <Navbar disableAnimation isBordered className="bg-white rounded-lg bg-opacity-75" classNames={{
       item: [
         "flex",
         "relative",
@@ -90,11 +91,11 @@ const NavBar = () => {
 
       <NavbarContent justify="end">
         <NavbarItem>
-          <Button onPress={onOpen} className="bg-transparent text-teal-600 hidden lg:flex">
+          <Button onPress={modal1.onOpen} className="bg-transparent text-teal-600 hidden lg:flex">
             Login
           </Button>
-          <Modal isOpen={isOpen} 
-          onOpenChange={onOpenChange}
+          <Modal className="bg-white bg-opacity-65" isOpen={modal1.isOpen} 
+          onOpenChange={modal1.onOpenChange}
           placement="top-center">
           <ModalContent>
           {(onClose) => (
@@ -127,7 +128,7 @@ const NavBar = () => {
                   >
                     Remember me
                   </Checkbox>
-                  <Link color="primary" href="#" size="sm">
+                  <Link className="text-teal-500" href="#" size="sm">
                     Forgot password?
                   </Link>
                 </div>
@@ -136,7 +137,7 @@ const NavBar = () => {
                 <Button color="danger" variant="flat" onPress={onClose}>
                   Close
                 </Button>
-                <Button color="primary" onPress={onClose}>
+                <Button className="bg-teal-500" onPress={onClose}>
                   Sign in
                 </Button>
               </ModalFooter>
@@ -146,12 +147,55 @@ const NavBar = () => {
           </Modal>
         </NavbarItem>
         <NavbarItem>
-          <Button as={Link} color="warning" href="#" variant="flat">
+          <Button onPress={modal2.onOpen} className="bg-teal-500 text-white" href="#">
             Sign Up
           </Button>
+          <Modal className="bg-white bg-opacity-65" isOpen={modal2.isOpen} 
+          onOpenChange={modal2.onOpenChange}
+          placement="top-center">
+          <ModalContent>
+          {(onClose) => (
+            <>
+              <ModalHeader className="flex flex-col gap-1">Sign Up</ModalHeader>
+              <ModalBody>
+                <Input 
+                  autoFocus
+                  label="Name"
+                  placeholder="Enter your name"
+                  variant="bordered"
+                />
+                <Input
+                  endContent={
+                    <MailIcon className="text-2xl text-default-400 pointer-events-none flex-shrink-0" />
+                  }
+                  label="Email"
+                  placeholder="Enter your email"
+                  variant="bordered"
+                />
+                <Input
+                  endContent={
+                    <LockIcon className="text-2xl text-default-400 pointer-events-none flex-shrink-0" />
+                  }
+                  label="Password"
+                  placeholder="Enter your password"
+                  type="password"
+                  variant="bordered"
+                />
+              </ModalBody>
+              <ModalFooter>
+                <Button color="danger" variant="flat" onPress={onClose}>
+                  Close
+                </Button>
+                <Button className="bg-teal-500" onPress={onClose}>
+                  Sign Up
+                </Button>
+              </ModalFooter>
+            </>
+          )}
+        </ModalContent>
+          </Modal>
         </NavbarItem>
       </NavbarContent>
-
       <NavbarMenu>
         {menuItems.map((item, index) => (
           <NavbarMenuItem key={`${item}-${index}`}>
