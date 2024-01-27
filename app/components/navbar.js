@@ -40,7 +40,7 @@ const NavBar = () => {
   const modal1 = useDisclosure();
   const modal2 = useDisclosure();
   return (
-    <Navbar disableAnimation isBordered className="bg-white rounded-lg bg-opacity-75" classNames={{
+    <Navbar className="rounded-lg bg-opacity-75" classNames={{
       item: [
         "flex",
         "relative",
@@ -94,7 +94,7 @@ const NavBar = () => {
           <Button onPress={modal1.onOpen} className="bg-transparent text-teal-600 hidden lg:flex">
             Login
           </Button>
-          <Modal className="bg-white bg-opacity-65" isOpen={modal1.isOpen} 
+          <Modal className="bg-white" isOpen={modal1.isOpen} 
           onOpenChange={modal1.onOpenChange}
           placement="top-center">
           <ModalContent>
@@ -150,7 +150,7 @@ const NavBar = () => {
           <Button onPress={modal2.onOpen} className="bg-teal-500 text-white" href="#">
             Sign Up
           </Button>
-          <Modal className="bg-white bg-opacity-65" isOpen={modal2.isOpen} 
+          <Modal className="bg-white" isOpen={modal2.isOpen} 
           onOpenChange={modal2.onOpenChange}
           placement="top-center">
           <ModalContent>
